@@ -1,0 +1,27 @@
+name: Regenerate gRPC code
+on:
+  push:
+    branches: main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Regenerate gRPC code
+        run: |
+          docker run --rm \
+          -v `pwd`:/workdir -w /workdir \
+          ghcr.io/amothic/protoc --proto_path=proto \
+          --go_out=go/pb --go_opt=paths=source_relative \
+          --go-grpc_out=go/pb --go-grpc_opt=paths=source_relative \
+          --js_out=import_style=commonjs:ts --ts_out=service=grpc-web:ts \
+          service.proto
+      - name: Commit
+        run: |
+          [[ ! $(git diff --exit-code go ts) ]] && echo "Nothing to commit." && exit 0
+          git config user.name "gRPC Bot"
+          git pull
+          git add go ts
+          git commit -m "chore: regenerate grpc code"
+          git push

@@ -9,7 +9,7 @@ GitHub Actions経由で、リリース作業を行うことができます。
 ## パッケージの利用手順
 ### Go
 ```
-go get -u github.com/amothic/sample-proto
+$ go get -u github.com/amothic/sample-proto
 ```
 ### TypeScript
 1. `package.json`と同じディレクトリに`.npmrc`を作成する

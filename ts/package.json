@@ -1,0 +1,10 @@
+{
+  "name": "@amothic/sample-proto",
+  "version": "0.0.1",
+  "repository": "git@github.com:amothic/sample-proto.git",
+  "dependencies": {
+    "@improbable-eng/grpc-web": "^0.15.0",
+    "@types/google-protobuf": "^3.15.5",
+    "google-protobuf": "^3.19.1"
+  }
+}

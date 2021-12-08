@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option go_package = "github.com/amothic/sample-proto/go/pb";
+
+service Sample {
+  rpc Create (CreateRequest) returns (CreateResponse);
+}
+
+message CreateRequest {
+    string user_name = 1;
+}
+
+message CreateResponse {
+    string user_name = 1;
+}
+

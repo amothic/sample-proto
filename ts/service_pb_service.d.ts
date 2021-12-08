@@ -13,9 +13,19 @@ type SampleCreate = {
   readonly responseType: typeof service_pb.CreateResponse;
 };
 
+type SampleDelete = {
+  readonly methodName: string;
+  readonly service: typeof Sample;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof service_pb.DeleteRequest;
+  readonly responseType: typeof service_pb.DeleteResponse;
+};
+
 export class Sample {
   static readonly serviceName: string;
   static readonly Create: SampleCreate;
+  static readonly Delete: SampleDelete;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -58,6 +68,15 @@ export class SampleClient {
   create(
     requestMessage: service_pb.CreateRequest,
     callback: (error: ServiceError|null, responseMessage: service_pb.CreateResponse|null) => void
+  ): UnaryResponse;
+  delete(
+    requestMessage: service_pb.DeleteRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: service_pb.DeleteResponse|null) => void
+  ): UnaryResponse;
+  delete(
+    requestMessage: service_pb.DeleteRequest,
+    callback: (error: ServiceError|null, responseMessage: service_pb.DeleteResponse|null) => void
   ): UnaryResponse;
 }
 

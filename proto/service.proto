@@ -8,18 +8,18 @@ service Sample {
 }
 
 message CreateRequest {
-    string user_name = 1;
+  string user_name = 1;
 }
 
 message CreateResponse {
-    string user_name = 1;
+  string user_name = 1;
 }
 
 message DeleteRequest {
-    string user_name = 1;
+  string user_name = 1;
 }
 
 message DeleteResponse {
-    string user_name = 1;
+  string user_name = 1;
 }
 
